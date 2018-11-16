@@ -16,6 +16,11 @@ public class EnemyController : MonoBehaviour {
         playerPos = player.transform.position;
         newXPos = new Vector3(playerPos.x, 0, 0);
 
+        if (Input.GetKey(KeyCode.W))
+        {
+            transform.position += Vector3.up * speed * Time.deltaTime;
+        }
+
         if (player) {
 
             Distance_ = Vector3.Distance(gameObject.transform.position, player.transform.position);
@@ -24,6 +29,9 @@ public class EnemyController : MonoBehaviour {
 
             if(Distance_ <= 10f)
             {
+                //GetComponent<Rigidbody2D>().AddForce(Vector2.up * speed);
+                //transform.position += Vector3.up * speed * Time.deltaTime;
+                
                 transform.position = Vector3.MoveTowards(transform.position, newXPos, speed);
             }
             }

@@ -286,7 +286,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2c3e6318131f2c4f8011388adaac5d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.05
+  speed: 0.08
+  period: 5
 --- !u!114 &114943731173624426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -298,7 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 415e7c4ed84614a4ea18276c8bff2e3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthMax: 100
+  healthMax: 500
   deathSound: {fileID: 0}
 --- !u!212 &212303986301465506
 SpriteRenderer:
