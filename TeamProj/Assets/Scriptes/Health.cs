@@ -54,6 +54,11 @@ public class Health : MonoBehaviour
         if (slider)
             slider.value = healthPercent();
     }
+
+    private void Update()
+    {
+        Debug.Log(health);
+    }
 }
 
 //If his health gets to zero i want him to respawn 

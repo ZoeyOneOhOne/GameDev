@@ -21,7 +21,6 @@ public class Checkpoint : MonoBehaviour {
 
             if (redLight)
                 Instantiate(redLight, transform.GetChild(0).transform.position, transform.rotation);
-            
         }
     }
 }
