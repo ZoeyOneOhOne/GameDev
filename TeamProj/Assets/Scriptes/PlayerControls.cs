@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 public class PlayerControls : MonoBehaviour
 {
     public float speed = 5;
+    public float runspeed = 5;
+    public float dashSpeed = 20;
     Vector2 respawnPoint;
     public static int respawns = 0;
     public Animator animator;
@@ -29,6 +31,12 @@ public class PlayerControls : MonoBehaviour
           
             ChangeRespawns();
         }
+
+
+        if (Input.GetKey(KeyCode.R))
+            speed = dashSpeed;
+        else
+            speed = runspeed;
 
         //JUMP
         if (Input.GetKeyDown(KeyCode.Space))
@@ -64,6 +72,8 @@ public class PlayerControls : MonoBehaviour
                 lastFireTime = Time.time;
                 //GetComponent<AudioSource>().Play();
             }
+
+           
         }
     }
 	
@@ -75,8 +85,8 @@ public class PlayerControls : MonoBehaviour
         animator.SetFloat("Speed", Mathf.Abs(movement));
 
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector3(movement, rb.velocity.y, 0);       
-	}
+        rb.velocity = new Vector3(movement, rb.velocity.y, 0);
+    }
 
     public void ChangeRespawns()
     {
