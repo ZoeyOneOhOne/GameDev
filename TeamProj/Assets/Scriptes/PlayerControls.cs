@@ -6,6 +6,7 @@ public class PlayerControls : MonoBehaviour
     public float speed = 5;
     Vector2 respawnPoint;
     public static int respawns = 0;
+    public Animator animator;
 
 
     public GameObject redLaser;
@@ -29,6 +30,7 @@ public class PlayerControls : MonoBehaviour
             ChangeRespawns();
         }
 
+        //JUMP
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //Check if we are on the ground right now
@@ -39,6 +41,8 @@ public class PlayerControls : MonoBehaviour
                 //Don't jump off ourselves
                 if (col.gameObject != this.gameObject)
                 {
+                    animator.SetBool("isJumping", true);
+
                     rb.velocity = new Vector2(rb.velocity.x, 0);//Ignore previous falling velocity so we jump the full amount each time.
                                         
                     rb.AddForce(Vector2.up * 300);
@@ -47,6 +51,8 @@ public class PlayerControls : MonoBehaviour
                 }
             }
         }
+
+     
 
         if (Input.GetAxis("Fire1") > 0)
         {
@@ -65,6 +71,9 @@ public class PlayerControls : MonoBehaviour
     {
         //Handle left and right movement
         float movement = Input.GetAxis("Horizontal") * speed;
+
+        animator.SetFloat("Speed", Mathf.Abs(movement));
+
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.velocity = new Vector3(movement, rb.velocity.y, 0);       
 	}
