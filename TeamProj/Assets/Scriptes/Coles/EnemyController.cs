@@ -29,9 +29,6 @@ public class EnemyController : MonoBehaviour {
 
             if(Distance_ <= 10f)
             {
-                //GetComponent<Rigidbody2D>().AddForce(Vector2.up * speed);
-                //transform.position += Vector3.up * speed * Time.deltaTime;
-                
                 transform.position = Vector3.MoveTowards(transform.position, newXPos, speed);
             }
             }

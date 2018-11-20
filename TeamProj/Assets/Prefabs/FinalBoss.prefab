@@ -23,6 +23,9 @@ GameObject:
   - component: {fileID: 60885659208609270}
   - component: {fileID: 50542085940661468}
   - component: {fileID: 114853170183884702}
+  - component: {fileID: 60221151398551756}
+  - component: {fileID: 95795035456999942}
+  - component: {fileID: 114040865132897560}
   m_Layer: 0
   m_Name: FinalBoss
   m_TagString: Untagged
@@ -37,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1790567792138468}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.771395, y: 9.83, z: 0}
+  m_LocalPosition: {x: 6.42, y: 5.73, z: 0}
   m_LocalScale: {x: 3.6439, y: 3.6439, z: 3.6439}
   m_Children: []
   m_Father: {fileID: 0}
@@ -63,6 +66,74 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!60 &60221151398551756
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1790567792138468}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.79, y: 0.94}
+    newSize: {x: 0.79, y: 0.94}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.315, y: -0.26999998}
+      - {x: 0.275, y: -0.26}
+      - {x: 0.225, y: -0.21}
+      - {x: 0.205, y: -0.21}
+      - {x: 0.085, y: -0.099999994}
+      - {x: 0.175, y: -0.03}
+      - {x: 0.21499999, y: 0.089999996}
+      - {x: 0.325, y: 0.099999994}
+      - {x: 0.36499998, y: 0.12}
+      - {x: 0.33499998, y: 0.19999999}
+      - {x: 0.285, y: 0.19999999}
+      - {x: 0.195, y: 0.35}
+      - {x: 0.125, y: 0.31}
+      - {x: 0.035, y: 0.47}
+      - {x: -0.155, y: 0.47}
+      - {x: -0.205, y: 0.45999998}
+      - {x: -0.125, y: 0.35999998}
+      - {x: -0.175, y: 0.32}
+      - {x: -0.305, y: 0.22999999}
+      - {x: -0.325, y: 0.17}
+      - {x: -0.325, y: 0.01}
+      - {x: -0.305, y: -0.03}
+      - {x: -0.235, y: 0.01}
+      - {x: -0.205, y: -0.01}
+      - {x: -0.095, y: -0.06}
+      - {x: -0.195, y: -0.19999999}
+      - {x: -0.235, y: -0.13}
+      - {x: -0.265, y: -0.14}
+      - {x: -0.295, y: -0.17}
+      - {x: -0.305, y: -0.19999999}
+      - {x: -0.295, y: -0.26999998}
+      - {x: -0.39499998, y: -0.32}
+      - {x: -0.39499998, y: -0.44}
+      - {x: -0.275, y: -0.47}
+      - {x: 0.21499999, y: -0.47}
+      - {x: 0.385, y: -0.39999998}
+      - {x: 0.39499998, y: -0.39}
+      - {x: 0.39499998, y: -0.24}
+    - - {x: -0.205, y: 0.19999999}
+      - {x: -0.16499999, y: 0.25}
+      - {x: -0.125, y: 0.22}
+      - {x: -0.155, y: 0.22}
+      - {x: -0.195, y: 0.17999999}
+      - {x: -0.225, y: 0.17999999}
 --- !u!60 &60885659208609270
 PolygonCollider2D:
   m_ObjectHideFlags: 1
@@ -131,6 +202,37 @@ PolygonCollider2D:
       - {x: -0.155, y: 0.22}
       - {x: -0.195, y: 0.17999999}
       - {x: -0.225, y: 0.17999999}
+--- !u!95 &95795035456999942
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1790567792138468}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9c236bd7e90ee724985559d83c2e46a0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114040865132897560
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1790567792138468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 415e7c4ed84614a4ea18276c8bff2e3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthMax: 100
+  deathSound: {fileID: 0}
 --- !u!114 &114853170183884702
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -11,6 +11,8 @@ public class JumpBossController : MonoBehaviour {
     private Rigidbody2D rb;
     private float nextActionTime = 0.0f;
     public float period = .5f;
+    public Animator animator;
+
 
     private void Start()
     {
@@ -35,6 +37,7 @@ public class JumpBossController : MonoBehaviour {
             Distance_ = Vector3.Distance(gameObject.transform.position, player.transform.position);
             if (Distance_ <= 10f)
             {
+                animator.SetFloat("distance", Mathf.Abs(Distance_));
                 transform.position = Vector3.MoveTowards(transform.position, newXPos, speed);
             }
         }
