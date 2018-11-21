@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour {
     float Distance_;
     Vector3 playerPos;
     Vector3 newXPos;
+    public Transform explosion;
 
 
     void Update()
@@ -34,5 +35,8 @@ public class EnemyController : MonoBehaviour {
             }
         
     }
-       
+
 }
+
+/* if (explosion)
+                Instantiate(explosion, transform.GetChild(0).transform.position, transform.rotation);    */
