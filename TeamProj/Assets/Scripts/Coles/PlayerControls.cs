@@ -49,7 +49,6 @@ public class PlayerControls : MonoBehaviour
                 //Don't jump off ourselves
                 if (col.gameObject != this.gameObject)
                 {
-                    animator.SetBool("isJumping", true);
 
                     rb.velocity = new Vector2(rb.velocity.x, 0);//Ignore previous falling velocity so we jump the full amount each time.
                                         
@@ -75,6 +74,7 @@ public class PlayerControls : MonoBehaviour
 
            
         }
+
     }
 	
 	void FixedUpdate ()
@@ -86,6 +86,10 @@ public class PlayerControls : MonoBehaviour
 
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.velocity = new Vector3(movement, rb.velocity.y, 0);
+
+        float yVel = rb.velocity.y;
+        animator.SetFloat("yVelocity", Mathf.Abs(yVel));
+
     }
 
     public void ChangeRespawns()

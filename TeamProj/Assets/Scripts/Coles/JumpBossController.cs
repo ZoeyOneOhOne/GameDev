@@ -17,6 +17,7 @@ public class JumpBossController : MonoBehaviour {
     private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
+        animator.SetBool("isRunning", false);
     }
 
     void Update()
@@ -24,6 +25,9 @@ public class JumpBossController : MonoBehaviour {
         GameObject player = God.playerObject;
         playerPos = player.transform.position;
         newXPos = new Vector3(playerPos.x, playerPos.y, 0);
+
+        float yVel = rb.velocity.y;
+        animator.SetFloat("yVel", Mathf.Abs(yVel));
 
         if (Time.time > nextActionTime)
         {
@@ -37,9 +41,11 @@ public class JumpBossController : MonoBehaviour {
             Distance_ = Vector3.Distance(gameObject.transform.position, player.transform.position);
             if (Distance_ <= 10f)
             {
-                animator.SetFloat("distance", Mathf.Abs(Distance_));
+                animator.SetBool("isRunning", true);
                 transform.position = Vector3.MoveTowards(transform.position, newXPos, speed);
             }
+            else
+                animator.SetBool("isRunning", false);
         }
 
     }

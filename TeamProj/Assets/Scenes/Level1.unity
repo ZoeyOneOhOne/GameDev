@@ -3964,7 +3964,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -4963,11 +4963,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4118431404554530, guid: 5db8ee4b2747a1a49a904fd5d19097d7, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 6.6
+      value: 258.7
       objectReference: {fileID: 0}
     - target: {fileID: 4118431404554530, guid: 5db8ee4b2747a1a49a904fd5d19097d7, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 4.9
+      value: -12.74
       objectReference: {fileID: 0}
     - target: {fileID: 4118431404554530, guid: 5db8ee4b2747a1a49a904fd5d19097d7, type: 2}
       propertyPath: m_LocalPosition.z
@@ -5401,11 +5401,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4113439675708694, guid: 75f87cd2bb5fa0b44a5a141834b563ef, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -6.43
+      value: 246.98
       objectReference: {fileID: 0}
     - target: {fileID: 4113439675708694, guid: 75f87cd2bb5fa0b44a5a141834b563ef, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 4.66
+      value: -12.68
       objectReference: {fileID: 0}
     - target: {fileID: 4113439675708694, guid: 75f87cd2bb5fa0b44a5a141834b563ef, type: 2}
       propertyPath: m_LocalPosition.z
