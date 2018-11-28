@@ -37,6 +37,3 @@ public class EnemyController : MonoBehaviour {
     }
 
 }
-
-/* if (explosion)
-                Instantiate(explosion, transform.GetChild(0).transform.position, transform.rotation);    */

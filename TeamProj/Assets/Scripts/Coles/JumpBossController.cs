@@ -12,6 +12,7 @@ public class JumpBossController : MonoBehaviour {
     private float nextActionTime = 0.0f;
     public float period = .5f;
     public Animator animator;
+    public ParticleSystem explosion;
 
 
     private void Start()
@@ -47,6 +48,19 @@ public class JumpBossController : MonoBehaviour {
             else
                 animator.SetBool("isRunning", false);
         }
+    }
 
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Ground"))
+        {
+            Explode();
+        }
+    }
+
+    void Explode()
+    {
+        Instantiate(explosion, transform.GetChild(0).transform.position, transform.rotation);
+        explosion.Play();
     }
 }
