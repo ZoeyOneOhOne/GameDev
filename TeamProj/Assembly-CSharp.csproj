@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\Coles\Damage.cs" />
     <Compile Include="Assets\Scripts\Coles\EnemyController.cs" />
     <Compile Include="Assets\Scripts\Coles\EnemyHealth.cs" />
+    <Compile Include="Assets\Scripts\Coles\FinalBossController.cs" />
     <Compile Include="Assets\Scripts\Coles\God.cs" />
     <Compile Include="Assets\Scripts\Coles\Health.cs" />
     <Compile Include="Assets\Scripts\Coles\JacksAIController.cs" />

@@ -53,7 +53,7 @@ public class BazusoController : MonoBehaviour {
 
         if (facingLeft == false && xVel > 0)
         {
-           // Flip();
+           Flip();
         }
         else if (facingLeft == false && xVel < 0)
         {
