@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114365914920512940}
   - component: {fileID: 50713630733945228}
   - component: {fileID: 114280659856077768}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: redLaser
   m_TagString: Untagged
   m_Icon: {fileID: 0}

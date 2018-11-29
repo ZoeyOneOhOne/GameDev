@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Buttons.cs" />
+    <Compile Include="Assets\Scripts\Coles\BazusoController.cs" />
     <Compile Include="Assets\Scripts\Coles\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\Coles\Checkpoint.cs" />
     <Compile Include="Assets\Scripts\Coles\Damage.cs" />
@@ -69,11 +70,13 @@
     <Compile Include="Assets\Scripts\Coles\EnemyHealth.cs" />
     <Compile Include="Assets\Scripts\Coles\God.cs" />
     <Compile Include="Assets\Scripts\Coles\Health.cs" />
-    <Compile Include="Assets\Scripts\Coles\JumpBossController.cs" />
+    <Compile Include="Assets\Scripts\Coles\JacksAIController.cs" />
     <Compile Include="Assets\Scripts\Coles\LaserScript.cs" />
     <Compile Include="Assets\Scripts\Coles\mainMenuScript.cs" />
     <Compile Include="Assets\Scripts\Coles\PlayerControls.cs" />
+    <Compile Include="Assets\Scripts\Coles\Projectile.cs" />
     <Compile Include="Assets\Scripts\Coles\SpriteSpin.cs" />
+    <Compile Include="Assets\Scripts\Coles\Turret.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>F:/Documents/GitHub/GameDev/TeamProj/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

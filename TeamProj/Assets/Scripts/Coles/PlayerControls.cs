@@ -9,6 +9,13 @@ public class PlayerControls : MonoBehaviour
     Vector2 respawnPoint;
     public static int respawns = 0;
     public Animator animator;
+    public bool facingRight = true;
+    bool isGrounded;
+    public Transform groundCheck;
+    public float checkRadius;
+    public LayerMask whatIsGround;
+    public int extraJumps;
+    public int extraJumpValue;
 
 
     public GameObject redLaser;
@@ -17,6 +24,7 @@ public class PlayerControls : MonoBehaviour
 
     void Start ()
     {
+        extraJumps = extraJumpValue;
         God.playerObject = gameObject;//4th way to reference a gameobject from another - have the gameobject tell the other one about itself instead of vice versa
         respawnPoint = transform.position;
 	}
@@ -38,8 +46,11 @@ public class PlayerControls : MonoBehaviour
         else
             speed = runspeed;
 
+//-------------------------------------------------------------- JUMPING / DOUBLE JUMPING --------------------------------------------------------------------------------------//
+        if (isGrounded == true)
+            extraJumps = extraJumpValue;
         //JUMP
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && extraJumps > 0)
         {
             //Check if we are on the ground right now
             GameObject feet = transform.GetChild(0).gameObject;
@@ -49,18 +60,29 @@ public class PlayerControls : MonoBehaviour
                 //Don't jump off ourselves
                 if (col.gameObject != this.gameObject)
                 {
-
-                    rb.velocity = new Vector2(rb.velocity.x, 0);//Ignore previous falling velocity so we jump the full amount each time.
-                                                           
+                    rb.velocity = new Vector2(rb.velocity.x, 0);//Ignore previous falling velocity so we jump the full amount each time.                                      
                     rb.AddForce(Vector2.up * 300);
-
+                    break;
+                }
+            }
+            extraJumps--;
+        } else if(Input.GetKeyDown(KeyCode.Space) && extraJumps == 0 && isGrounded == true)
+        { 
+            //Check if we are on the ground right now
+            GameObject feet = transform.GetChild(0).gameObject;
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(feet.transform.position, 10f);
+            foreach (Collider2D col in colliders)
+            {
+                //Don't jump off ourselves
+                if (col.gameObject != this.gameObject)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, 0);//Ignore previous falling velocity so we jump the full amount each time.                                      
+                    rb.AddForce(Vector2.up * 300);
                     break;
                 }
             }
         }
-
-     
-
+        //-------------------------------------------------------------- END --------------------------------------------------------------------------------------//
         if (Input.GetAxis("Fire1") > 0)
         {
             if (Time.time - (1 / fireRate) > lastFireTime)
@@ -71,10 +93,7 @@ public class PlayerControls : MonoBehaviour
                 lastFireTime = Time.time;
                 //GetComponent<AudioSource>().Play();
             }
-
-           
         }
-
     }
 	
 	void FixedUpdate ()
@@ -89,6 +108,20 @@ public class PlayerControls : MonoBehaviour
 
         float yVel = rb.velocity.y;
         animator.SetFloat("yVelocity", Mathf.Abs(yVel));
+
+        //-------------------------------------------------------------- FLIPPING CHARACTER --------------------------------------------------------------------------------------//
+        //Flip character sprite when going right direction
+        if (facingRight == false && movement > 0)
+        {
+            Flip();
+        }
+        else if(facingRight == true && movement < 0)
+        {
+            Flip();
+        }
+        //-------------------------------------------------------------- END --------------------------------------------------------------------------------------//
+        //Checking to see if on ground and double jump stuff
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
 
     }
 
@@ -107,5 +140,13 @@ public class PlayerControls : MonoBehaviour
     public void SetRespawnPoint(Vector2 vec)
     {
         respawnPoint = vec;
+    }
+
+    void Flip()
+    {
+        facingRight = !facingRight;
+        Vector3 Scaler = transform.localScale;
+        Scaler.x *= -1;
+        transform.localScale = Scaler;
     }
 } 

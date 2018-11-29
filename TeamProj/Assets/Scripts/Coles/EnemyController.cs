@@ -7,7 +7,7 @@ public class EnemyController : MonoBehaviour {
     public float speed;
     float Distance_;
     Vector3 playerPos;
-    Vector3 newXPos;
+    Vector3 newPos;
     public Transform explosion;
 
 
@@ -15,17 +15,15 @@ public class EnemyController : MonoBehaviour {
     {
         GameObject player = God.playerObject;
         playerPos = player.transform.position;
-        newXPos = new Vector3(playerPos.x, 0, 0);
+        newPos = new Vector3(playerPos.x, playerPos.y, 0);
 
         if (player) {
-
-            Distance_ = Vector3.Distance(gameObject.transform.position, player.transform.position);
-
             //Following Player
+            Distance_ = Vector3.Distance(gameObject.transform.position, player.transform.position);
 
             if(Distance_ <= 10f)
             {
-                transform.position = Vector3.MoveTowards(transform.position, newXPos, speed);
+                transform.position = Vector3.MoveTowards(transform.position, newPos, speed);
             }
             }
         
