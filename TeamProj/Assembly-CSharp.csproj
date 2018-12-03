@@ -70,6 +70,7 @@
      <Compile Include="Assets\Scripts\Coles\Projectile.cs" />
      <Compile Include="Assets\Scripts\Coles\SpriteSpin.cs" />
      <Compile Include="Assets\Scripts\Coles\Turret.cs" />
+     <Compile Include="Assets\Scripts\Dylans\PlotformMovement.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>C:/Users/Hammack/Documents/GitHub/GameDev/TeamProj/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
