@@ -58,11 +58,12 @@ public class PlayerControls : MonoBehaviour
         else
             speed = runspeed;
 
-//-------------------------------------------------------------- JUMPING / DOUBLE JUMPING  USING SPACEBAR --------------------------------------------------------------------------------------//
+        //-------------------------------------------------------------- JUMPING / DOUBLE JUMPING  USING SPACEBAR --------------------------------------------------------------------------------------//
+        Debug.Log(Input.GetAxis("Jump"));
         if (isGrounded == true)
             extraJumps = extraJumpValue;
         //JUMP while in air
-        if (Input.GetKeyDown(KeyCode.Space) && extraJumps > 0)
+        if (Input.GetAxis("Jump") > 0.1f && extraJumps > 0)
         {
             //Check if we are on the ground right now
             GameObject feet = transform.GetChild(0).gameObject;
@@ -79,7 +80,7 @@ public class PlayerControls : MonoBehaviour
                     break;
                 }
             }
-        } else if(Input.GetKeyDown(KeyCode.Space) && extraJumps == 0 && isGrounded == true)
+        } else if(Input.GetAxis("Jump") > 0.1f && extraJumps == 0 && isGrounded == true)
         { 
             //Check if we are on the ground right now
             GameObject feet = transform.GetChild(0).gameObject;
@@ -103,11 +104,9 @@ public class PlayerControls : MonoBehaviour
         {
             if (Time.time - (1 / fireRate) > lastFireTime)
             {
-                bool goingRight = true;
-                Quaternion spawnRotation = Quaternion.Euler(0, 0, goingRight ? 0 : 180);
+                Quaternion spawnRotation = Quaternion.Euler(0, 0, facingRight ? 0 : 180);
                 Instantiate(redLaser, gameObject.transform.GetChild(1).position, spawnRotation);
                 lastFireTime = Time.time;
-                //GetComponent<AudioSource>().Play();
             }
         }
     }
