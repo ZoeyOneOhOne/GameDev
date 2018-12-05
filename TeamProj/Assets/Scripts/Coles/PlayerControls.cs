@@ -58,10 +58,10 @@ public class PlayerControls : MonoBehaviour
         else
             speed = runspeed;
 
-//-------------------------------------------------------------- JUMPING / DOUBLE JUMPING --------------------------------------------------------------------------------------//
+//-------------------------------------------------------------- JUMPING / DOUBLE JUMPING  USING SPACEBAR --------------------------------------------------------------------------------------//
         if (isGrounded == true)
             extraJumps = extraJumpValue;
-        //JUMP
+        //JUMP while in air
         if (Input.GetKeyDown(KeyCode.Space) && extraJumps > 0)
         {
             //Check if we are on the ground right now
@@ -98,6 +98,7 @@ public class PlayerControls : MonoBehaviour
             }
         }
         //-------------------------------------------------------------- END --------------------------------------------------------------------------------------//
+
         if (Input.GetAxis("Fire1") > 0)
         {
             if (Time.time - (1 / fireRate) > lastFireTime)
