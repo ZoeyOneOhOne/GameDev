@@ -14,8 +14,9 @@ public class PlayerControls : MonoBehaviour
     public Transform groundCheck;
     public float checkRadius;
     public LayerMask whatIsGround;
+    int groundLayer;
     public int extraJumps;
-    public int extraJumpValue;
+    public int extraJumpValue = 2;
 
 
     public GameObject redLaser;
@@ -27,10 +28,21 @@ public class PlayerControls : MonoBehaviour
         extraJumps = extraJumpValue;
         God.playerObject = gameObject;//4th way to reference a gameobject from another - have the gameobject tell the other one about itself instead of vice versa
         respawnPoint = transform.position;
+
+        groundLayer = LayerMask.NameToLayer("Ground");
+        Debug.Log(groundLayer);
+
 	}
 
     void Update()//More responsive - checks our input each frame
     {
+        //Checking to see if on ground and double jump stuff
+        Collider2D result = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
+        if (result)
+            isGrounded = true;
+        else
+            isGrounded = false;
+        Debug.Log(isGrounded);
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
         if (transform.position.y <= -100)
@@ -60,12 +72,13 @@ public class PlayerControls : MonoBehaviour
                 //Don't jump off ourselves
                 if (col.gameObject != this.gameObject)
                 {
+                    Debug.Log(isGrounded);
                     rb.velocity = new Vector2(rb.velocity.x, 0);//Ignore previous falling velocity so we jump the full amount each time.                                      
                     rb.AddForce(Vector2.up * 300);
+                    extraJumps--;
                     break;
                 }
             }
-            extraJumps--;
         } else if(Input.GetKeyDown(KeyCode.Space) && extraJumps == 0 && isGrounded == true)
         { 
             //Check if we are on the ground right now
@@ -76,8 +89,10 @@ public class PlayerControls : MonoBehaviour
                 //Don't jump off ourselves
                 if (col.gameObject != this.gameObject)
                 {
+                    Debug.Log(isGrounded);
                     rb.velocity = new Vector2(rb.velocity.x, 0);//Ignore previous falling velocity so we jump the full amount each time.                                      
                     rb.AddForce(Vector2.up * 300);
+                    extraJumps--;
                     break;
                 }
             }
@@ -120,8 +135,6 @@ public class PlayerControls : MonoBehaviour
             Flip();
         }
         //-------------------------------------------------------------- END --------------------------------------------------------------------------------------//
-        //Checking to see if on ground and double jump stuff
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
 
     }
 
