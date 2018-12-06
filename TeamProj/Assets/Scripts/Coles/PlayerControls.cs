@@ -3,34 +3,40 @@ using UnityEngine.SceneManagement;
 
 public class PlayerControls : MonoBehaviour
 {
+    public bool facingRight = true;
+    private Rigidbody2D rb;
+    public Animator animator;
+    //------------------------Movement----------------------//
     public float speed = 5;
     public float runspeed = 5;
-    public float dashSpeed = 20;
+    public float dashSpeed;
+    private float dashTime;
+    public float startDashTime;
+    //------------------------Respsawning---------------------//
     Vector2 respawnPoint;
     public static int respawns = 0;
-    public Animator animator;
-    public bool facingRight = true;
-    bool isGrounded;
+    //------------------------Jumping----------------------//
+    public bool isGrounded = true;
     public Transform groundCheck;
     public float checkRadius;
     public LayerMask whatIsGround;
     int groundLayer;
     public int extraJumps;
     public int extraJumpValue = 2;
-
-
+    //------------------------Shooting----------------------//
     public GameObject redLaser;
     public float fireRate = 10;
     private float lastFireTime = float.MinValue;
 
     void Start ()
     {
+
+        groundLayer = LayerMask.NameToLayer("Ground");
+        rb = GetComponent<Rigidbody2D>();
+
         extraJumps = extraJumpValue;
         God.playerObject = gameObject;//4th way to reference a gameobject from another - have the gameobject tell the other one about itself instead of vice versa
         respawnPoint = transform.position;
-
-        groundLayer = LayerMask.NameToLayer("Ground");
-
 	}
 
     void Update()//More responsive - checks our input each frame
@@ -41,7 +47,6 @@ public class PlayerControls : MonoBehaviour
             isGrounded = true;
         else
             isGrounded = false;
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
         if (transform.position.y <= -100)
         {
@@ -51,50 +56,21 @@ public class PlayerControls : MonoBehaviour
         }
 
 
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))
             speed = dashSpeed;
         else
             speed = runspeed;
 
-        //-------------------------------------------------------------- JUMPING / DOUBLE JUMPING  USING SPACEBAR --------------------------------------------------------------------------------------//
+
+        //JUMPING
         if (isGrounded == true)
             extraJumps = extraJumpValue;
         //JUMP while in air
-        if (Input.GetButtonDown("Jump") && extraJumps > 0)
-        {
-            //Check if we are on the ground right now
-            GameObject feet = transform.GetChild(0).gameObject;
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(feet.transform.position, 10f);
-            foreach (Collider2D col in colliders)
-            {
-                //Don't jump off ourselves
-                if (col.gameObject != this.gameObject)
-                {
-                    rb.velocity = new Vector2(rb.velocity.x, 0);//Ignore previous falling velocity so we jump the full amount each time.                                      
-                    rb.AddForce(Vector2.up * 300);
-                    extraJumps--;
-                    break;
-                }
-            }
-        } else if(Input.GetButtonDown("Jump") && extraJumps == 0 && isGrounded == true)
-        { 
-            //Check if we are on the ground right now
-            GameObject feet = transform.GetChild(0).gameObject;
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(feet.transform.position, 10f);
-            foreach (Collider2D col in colliders)
-            {
-                //Don't jump off ourselves
-                if (col.gameObject != this.gameObject)
-                {
-                    rb.velocity = new Vector2(rb.velocity.x, 0);//Ignore previous falling velocity so we jump the full amount each time.                                      
-                    rb.AddForce(Vector2.up * 300);
-                    extraJumps--;
-                    break;
-                }
-            }
-        }
-        //-------------------------------------------------------------- END --------------------------------------------------------------------------------------//
+        if (Input.GetButtonDown("Jump"))
+            Jump(); 
 
+
+        //SHOOTING
         if (Input.GetAxis("Fire1") > 0)
         {
             if (Time.time - (1 / fireRate) > lastFireTime)
@@ -155,5 +131,29 @@ public class PlayerControls : MonoBehaviour
         Vector3 Scaler = transform.localScale;
         Scaler.x *= -1;
         transform.localScale = Scaler;
+    }
+
+    void Jump()
+    {
+        if (isGrounded == true)
+            extraJumps = extraJumpValue;
+        //JUMP while in air
+        if (extraJumps > 0)
+        {
+            //Check if we are on the ground right now
+            GameObject feet = transform.GetChild(0).gameObject;
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(feet.transform.position, 10f);
+            foreach (Collider2D col in colliders)
+            {
+                //Don't jump off ourselves
+                if (col.gameObject != this.gameObject)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, 0);//Ignore previous falling velocity so we jump the full amount each time.                                      
+                    rb.AddForce(Vector2.up * 300);
+                    extraJumps--;
+                    break;
+                }
+            }
+        }
     }
 } 
