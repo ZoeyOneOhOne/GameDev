@@ -12,11 +12,6 @@ public class LaserScript : MonoBehaviour {
         gameObject.GetComponent<Rigidbody2D>().velocity = (50 * gameObject.transform.right);
     }
 
-    void Update()
-    {
-
-    }
-
     void DieOff()
     {
         Destroy(gameObject);

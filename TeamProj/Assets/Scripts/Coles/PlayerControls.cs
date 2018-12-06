@@ -12,6 +12,7 @@ public class PlayerControls : MonoBehaviour
     public float dashSpeed;
     private float dashTime;
     public float startDashTime;
+    private int direction;
     //------------------------Respsawning---------------------//
     Vector2 respawnPoint;
     public static int respawns = 0;
@@ -30,9 +31,9 @@ public class PlayerControls : MonoBehaviour
 
     void Start ()
     {
-
-        groundLayer = LayerMask.NameToLayer("Ground");
         rb = GetComponent<Rigidbody2D>();
+        dashTime = startDashTime;
+        groundLayer = LayerMask.NameToLayer("Ground");
 
         extraJumps = extraJumpValue;
         God.playerObject = gameObject;//4th way to reference a gameobject from another - have the gameobject tell the other one about itself instead of vice versa
@@ -56,10 +57,20 @@ public class PlayerControls : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.R))
-            speed = dashSpeed;
-        else
-            speed = runspeed;
+        if (Input.GetButtonDown("Dash"))
+        {
+
+            if (dashTime <= 0)
+            {
+                dashTime = startDashTime;
+            }
+
+            else
+            {
+                Dash();
+            }
+  
+        }
 
 
         //JUMPING
@@ -155,5 +166,12 @@ public class PlayerControls : MonoBehaviour
                 }
             }
         }
+    }
+
+    void Dash()
+    {
+        animator.SetBool("isDashing", true);
+        dashTime -= Time.deltaTime;
+        rb.velocity = new Vector2(rb.velocity.x, dashSpeed);
     }
 } 
