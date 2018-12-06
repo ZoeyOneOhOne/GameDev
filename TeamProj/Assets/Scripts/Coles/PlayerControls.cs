@@ -26,6 +26,7 @@ public class PlayerControls : MonoBehaviour
     public int extraJumpValue = 2;
     //------------------------Shooting----------------------//
     public GameObject redLaser;
+    public GameObject orbLaser;
     public float fireRate = 10;
     private float lastFireTime = float.MinValue;
 
@@ -90,6 +91,13 @@ public class PlayerControls : MonoBehaviour
                 Instantiate(redLaser, gameObject.transform.GetChild(1).position, spawnRotation);
                 lastFireTime = Time.time;
             }
+        }
+
+        //ALT SHOOTING
+        if (Input.GetAxis("Fire2") >0 )
+        {
+                Quaternion spawnRotation = Quaternion.Euler(0, 0, facingRight ? 0 : 180);
+                Instantiate(orbLaser, gameObject.transform.GetChild(1).position, spawnRotation);
         }
     }
 	

@@ -5298,6 +5298,12 @@ Prefab:
       propertyPath: startDashTime
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 114985635165655446, guid: 75f87cd2bb5fa0b44a5a141834b563ef,
+        type: 2}
+      propertyPath: orbLaser
+      value: 
+      objectReference: {fileID: 1747848998918796, guid: 8415e1d672e8cfa42a7ad29cfa869ba8,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75f87cd2bb5fa0b44a5a141834b563ef, type: 2}
   m_IsPrefabAsset: 0
