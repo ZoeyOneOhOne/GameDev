@@ -5288,6 +5288,11 @@ Prefab:
       propertyPath: extraJumpValue
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 50867669411461046, guid: 75f87cd2bb5fa0b44a5a141834b563ef,
+        type: 2}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75f87cd2bb5fa0b44a5a141834b563ef, type: 2}
   m_IsPrefabAsset: 0
