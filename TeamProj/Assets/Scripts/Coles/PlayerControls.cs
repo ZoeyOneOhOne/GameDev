@@ -30,7 +30,6 @@ public class PlayerControls : MonoBehaviour
         respawnPoint = transform.position;
 
         groundLayer = LayerMask.NameToLayer("Ground");
-        Debug.Log(groundLayer);
 
 	}
 
@@ -42,7 +41,6 @@ public class PlayerControls : MonoBehaviour
             isGrounded = true;
         else
             isGrounded = false;
-        Debug.Log(isGrounded);
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
         if (transform.position.y <= -100)
@@ -59,11 +57,10 @@ public class PlayerControls : MonoBehaviour
             speed = runspeed;
 
         //-------------------------------------------------------------- JUMPING / DOUBLE JUMPING  USING SPACEBAR --------------------------------------------------------------------------------------//
-        Debug.Log(Input.GetAxis("Jump"));
         if (isGrounded == true)
             extraJumps = extraJumpValue;
         //JUMP while in air
-        if (Input.GetAxis("Jump") > 0.1f && extraJumps > 0)
+        if (Input.GetButtonDown("Jump") && extraJumps > 0)
         {
             //Check if we are on the ground right now
             GameObject feet = transform.GetChild(0).gameObject;
@@ -73,14 +70,13 @@ public class PlayerControls : MonoBehaviour
                 //Don't jump off ourselves
                 if (col.gameObject != this.gameObject)
                 {
-                    Debug.Log(isGrounded);
                     rb.velocity = new Vector2(rb.velocity.x, 0);//Ignore previous falling velocity so we jump the full amount each time.                                      
                     rb.AddForce(Vector2.up * 300);
                     extraJumps--;
                     break;
                 }
             }
-        } else if(Input.GetAxis("Jump") > 0.1f && extraJumps == 0 && isGrounded == true)
+        } else if(Input.GetButtonDown("Jump") && extraJumps == 0 && isGrounded == true)
         { 
             //Check if we are on the ground right now
             GameObject feet = transform.GetChild(0).gameObject;
@@ -90,7 +86,6 @@ public class PlayerControls : MonoBehaviour
                 //Don't jump off ourselves
                 if (col.gameObject != this.gameObject)
                 {
-                    Debug.Log(isGrounded);
                     rb.velocity = new Vector2(rb.velocity.x, 0);//Ignore previous falling velocity so we jump the full amount each time.                                      
                     rb.AddForce(Vector2.up * 300);
                     extraJumps--;
@@ -143,7 +138,6 @@ public class PlayerControls : MonoBehaviour
         transform.position = respawnPoint;
         respawns++;
         gameObject.GetComponent<Health>().Respawn();
-        Debug.Log(respawns);
         if (respawns == 3)
         {
             SceneManager.LoadScene("Main Menu");
