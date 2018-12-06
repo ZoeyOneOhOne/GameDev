@@ -18,7 +18,7 @@ public class Health : MonoBehaviour
         isDead = false;
         if (gameObject.tag == "Player")
         {
-            //slider.value = 1;
+            slider.value = 1;
         }
     }
 
