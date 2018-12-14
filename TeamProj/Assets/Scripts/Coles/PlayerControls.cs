@@ -34,7 +34,9 @@ public class PlayerControls : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         dashTime = startDashTime;
+        animator.SetFloat("DashSpeed", dashSpeed);
         groundLayer = LayerMask.NameToLayer("Ground");
+
 
         extraJumps = extraJumpValue;
         God.playerObject = gameObject;//4th way to reference a gameobject from another - have the gameobject tell the other one about itself instead of vice versa
@@ -58,7 +60,7 @@ public class PlayerControls : MonoBehaviour
         }
 
 
-        if (Input.GetButtonDown("Dash"))
+        if (Input.GetButton("Dash"))
         {
 
             if (dashTime <= 0)
@@ -72,7 +74,11 @@ public class PlayerControls : MonoBehaviour
             }
   
         }
+        else
+        {
+            animator.SetBool("isDashing", false);
 
+        }
 
         //JUMPING
         if (isGrounded == true)
@@ -104,12 +110,20 @@ public class PlayerControls : MonoBehaviour
 	void FixedUpdate ()
     {
         //Handle left and right movement
+        
         float movement = Input.GetAxis("Horizontal") * speed;
 
         animator.SetFloat("Speed", Mathf.Abs(movement));
 
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector3(movement, rb.velocity.y, 0);
+        if (animator.GetBool("isDashing"))
+        {
+            rb.velocity = new Vector3(dashSpeed * movement, rb.velocity.y, 0);
+        }
+        else
+        {
+            rb.velocity = new Vector3(movement, rb.velocity.y, 0);
+        }
 
         float yVel = rb.velocity.y;
         animator.SetFloat("yVelocity", Mathf.Abs(yVel));
@@ -180,6 +194,7 @@ public class PlayerControls : MonoBehaviour
     {
         animator.SetBool("isDashing", true);
         dashTime -= Time.deltaTime;
-        rb.velocity = new Vector2(rb.velocity.x, dashSpeed);
+        
+        //rb.AddForce(dashSpeed + rb.velocity.x, rb.velocity.y);
     }
 } 
